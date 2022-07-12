@@ -1,1 +1,24 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          meus-contatos:
+            authorization-grant-type: client_credentials
+            client-id: cli-cred-client
+            client-secret: wqXKbLI0KE8yMAHr2wcafZzyOaPCfdP5
+            scope: contatos:read
+        provider:
+          meus-contatos:
+            token-uri: http://localhost:18080/realms/meus-contatos/protocol/openid-connect/token
 
+server:
+  port: 8081
+  error:
+    include-message: always
+
+logging:
+  level:
+    '[org.springframework.web.client]': DEBUG
+    '[org.springframework.web.reactive.function.client]': DEBUG
+    '[reactor.netty.http.client]': DEBUG
