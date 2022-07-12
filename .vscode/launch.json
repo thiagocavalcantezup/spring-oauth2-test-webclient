@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringOauth2TestWebclientApplication<spring-oauth2-test-webclient>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "br.com.zup.handora.springoauth2testwebclient.SpringOauth2TestWebclientApplication",
+      "projectName": "spring-oauth2-test-webclient",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
