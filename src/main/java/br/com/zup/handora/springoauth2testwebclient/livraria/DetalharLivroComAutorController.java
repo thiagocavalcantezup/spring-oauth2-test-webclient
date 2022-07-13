@@ -25,6 +25,7 @@ public class DetalharLivroComAutorController {
     @GetMapping("/livros/{livroId}")
     public ResponseEntity<?> detalharLivroComAutor(@PathVariable Long livroId) {
         DetalhesDoLivroResponse detalhesDoLivroResponse;
+        DetalhesDoAutorResponse detalhesDoAutorResponse;
 
         try {
             detalhesDoLivroResponse = livrariaClient.detalharLivro(livroId);
@@ -32,9 +33,13 @@ public class DetalharLivroComAutorController {
             throw new ResponseStatusException(NOT_FOUND, "Livro não encontrado");
         }
 
-        DetalhesDoAutorResponse detalhesDoAutorResponse = livrariaClient.detalharAutor(
-            detalhesDoLivroResponse.getAutorId()
-        );
+        try {
+            detalhesDoAutorResponse = livrariaClient.detalharAutor(
+                detalhesDoLivroResponse.getAutorId()
+            );
+        } catch (WebClientResponseException.NotFound e) {
+            throw new ResponseStatusException(NOT_FOUND, "Autor não encontrado");
+        }
 
         return ResponseEntity.ok(
             new DetalhesDoLivroComAutorResponse(detalhesDoLivroResponse, detalhesDoAutorResponse)
